@@ -16,6 +16,8 @@ class Settings:
         self.jwt_algorithm = "HS256"
         self.access_token_minutes = int(os.getenv("ACCESS_TOKEN_MINUTES", "1440"))
         self.cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
+        # Hosted demo: create/reset the demo account on every start
+        self.demo_mode = os.getenv("DEMO_MODE", "").lower() in {"1", "true", "yes"}
 
     @staticmethod
     def _dev_secret() -> str:

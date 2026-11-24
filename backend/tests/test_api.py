@@ -217,3 +217,23 @@ def test_short_history_uses_moving_average(client, make_user):
     body = client.get("/api/forecast", headers=headers).json()
     assert body["months_of_history"] == 3
     assert "moving average" in body["method"]
+
+
+# --- hosted demo -------------------------------------------------------------
+
+def test_demo_endpoint_disabled_by_default(client):
+    assert client.get("/api/demo").json() == {"enabled": False}
+
+
+def test_reset_demo_account_is_repeatable(client):
+    from app.database import SessionLocal
+    from app.demo_account import DEMO_EMAIL, DEMO_PASSWORD, reset_demo_account
+
+    with SessionLocal() as db:
+        first = reset_demo_account(db)
+        second = reset_demo_account(db)
+    assert first == second > 500
+    login = client.post("/api/auth/login", json={"email": DEMO_EMAIL, "password": DEMO_PASSWORD})
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    assert client.get("/api/expenses", headers=headers).json()["total"] == first  # not duplicated
+    assert len(client.get("/api/budgets", headers=headers).json()) == 5

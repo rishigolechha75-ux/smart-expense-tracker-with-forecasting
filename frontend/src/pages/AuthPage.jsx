@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { api } from "../api.js";
 import { useAuth } from "../auth.jsx";
 
 export default function AuthPage({ mode }) {
@@ -9,6 +10,23 @@ export default function AuthPage({ mode }) {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [demo, setDemo] = useState(null);
+
+  useEffect(() => {
+    api.demoInfo().then((d) => d.enabled && setDemo(d)).catch(() => {});
+  }, []);
+
+  async function tryDemo() {
+    setError("");
+    setBusy(true);
+    try {
+      await authenticate("login", { email: demo.email, password: demo.password });
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+      setBusy(false);
+    }
+  }
 
   const update = (key) => (e) => setForm({ ...form, [key]: e.target.value });
 
@@ -62,6 +80,14 @@ export default function AuthPage({ mode }) {
         <button className="btn primary" disabled={busy}>
           {busy ? "Please wait..." : isLogin ? "Log in" : "Sign up"}
         </button>
+        {demo && (
+          <div className="demo-box">
+            <button type="button" className="btn" onClick={tryDemo} disabled={busy}>
+              Try the demo account
+            </button>
+            <span className="hint">18 months of sample data. Changes reset when the server restarts.</span>
+          </div>
+        )}
         <p className="muted switch">
           {isLogin ? "New here? " : "Already have an account? "}
           <Link to={isLogin ? "/register" : "/login"}>{isLogin ? "Create an account" : "Log in"}</Link>

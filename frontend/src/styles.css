@@ -74,8 +74,10 @@ label { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; fon
 
 /* layout */
 .shell { min-height: 100vh; }
-.topbar { display: flex; align-items: center; gap: 24px; padding: 0 24px; height: 56px; background: var(--ink); color: #eef0eb; }
-@media (prefers-color-scheme: dark) { .topbar { background: #0f1210; border-bottom: 1px solid var(--border); } }
+.topbar { display: flex; align-items: center; gap: 24px; padding: 0 24px; height: 56px; background: #23302a; color: #eef0eb; }
+@media (prefers-color-scheme: dark) {
+  .topbar { background: #0f1210; border-bottom: 1px solid var(--border); }
+}
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
 .brand-mark { display: inline-grid; place-items: center; width: 28px; height: 28px; background: var(--accent); color: #fff; border-radius: 2px; font-weight: 700; }
 .brand-mark.large { width: 48px; height: 48px; font-size: 1.5rem; }
@@ -174,7 +176,7 @@ label { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; fon
 
 /* auth */
 .auth-page { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
-.auth-side { background: var(--ink); color: #eef0eb; padding: 64px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.auth-side { background: #23302a; color: #eef0eb; padding: 64px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
 .auth-side h1 { color: #fff; font-size: 2rem; max-width: 420px; line-height: 1.2; }
 .auth-side p { color: #b9c3b9; max-width: 400px; }
 .auth-card { align-self: center; justify-self: center; width: 100%; max-width: 360px; display: flex; flex-direction: column; gap: 14px; padding: 24px; }
@@ -184,3 +186,5 @@ label { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; fon
   .auth-side { padding: 32px 24px; }
 }
 .table th.num { text-align: right; }
+.demo-box { display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 1px solid var(--border); }
+@media (prefers-color-scheme: dark) { .auth-side { background: #0f1210; border-right: 1px solid var(--border); } }

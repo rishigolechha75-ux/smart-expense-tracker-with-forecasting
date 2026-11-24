@@ -61,6 +61,7 @@ export const api = {
   register: (data) => request("/api/auth/register", { method: "POST", body: data }),
   login: (data) => request("/api/auth/login", { method: "POST", body: data }),
   me: () => request("/api/auth/me"),
+  demoInfo: () => request("/api/demo"),
 
   meta: () => request("/api/expenses/meta"),
   listExpenses: (params) => request("/api/expenses", { params }),
