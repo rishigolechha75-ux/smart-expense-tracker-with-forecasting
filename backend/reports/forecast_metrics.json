@@ -1,0 +1,38 @@
+{
+  "users_simulated": 300,
+  "months_per_user": 36,
+  "held_out_users": 60,
+  "evaluation": "one-step-ahead rolling origin over each held-out user's last 12 months",
+  "results": {
+    "Last month (naive)": {
+      "MAPE": 24.18,
+      "median_APE": 14.97,
+      "MAE": 11497.79
+    },
+    "3-month moving average": {
+      "MAPE": 20.07,
+      "median_APE": 15.2,
+      "MAE": 9697.35
+    },
+    "Same month last year (seasonal naive)": {
+      "MAPE": 15.37,
+      "median_APE": 12.84,
+      "MAE": 7074.47
+    },
+    "Ridge regression": {
+      "MAPE": 13.99,
+      "median_APE": 11.33,
+      "MAE": 6322.6
+    },
+    "Gradient boosting": {
+      "MAPE": 12.6,
+      "median_APE": 10.63,
+      "MAE": 5876.25
+    }
+  },
+  "chosen_model": "Gradient boosting",
+  "interval_80pct_relative_error": [
+    -0.1794,
+    0.219
+  ]
+}
