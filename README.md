@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/rishigolechha75-ux/smart-expense-tracker-with-forecasting/actions/workflows/ci.yml/badge.svg)](https://github.com/rishigolechha75-ux/smart-expense-tracker-with-forecasting/actions/workflows/ci.yml)
 
+**Live demo: https://smart-expense-tracker-y1lm.onrender.com** (click *Try the demo account* to log in with 18 months of sample data). Hosted on Render's free plan, so the first visit after a quiet period can take up to a minute to wake up, and demo data resets when the server restarts.
+
 A full-stack personal finance app. You log your expenses, set monthly budgets, and see where your money goes on an analytics dashboard. A machine-learning model forecasts how much you are likely to spend in the coming months.
 
 ![Dashboard with spending history, forecast and range](docs/dashboard.jpg)
@@ -85,6 +87,10 @@ That's 37% less error than a 3-month moving average and 18% less than the best s
 | DevOps | Docker, Docker Compose, GitHub Actions (tests run against PostgreSQL) |
 
 ## Getting started
+
+### Hosted demo
+
+The live demo runs from the root [`Dockerfile`](Dockerfile), which builds the React app and serves it from the API, deployed with the [`render.yaml`](render.yaml) blueprint. `DEMO_MODE=1` recreates the demo account on every start.
 
 ### Option A: quick local run (SQLite)
 
