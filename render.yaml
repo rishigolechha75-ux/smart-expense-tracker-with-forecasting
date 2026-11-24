@@ -1,0 +1,16 @@
+# Render blueprint: https://render.com/docs/blueprint-spec
+# Free hosted demo using SQLite. Data resets when the service restarts,
+# and the demo account is recreated on every start.
+services:
+  - type: web
+    name: smart-expense-tracker
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: DEMO_MODE
+        value: "1"
+      - key: JWT_SECRET
+        generateValue: true
